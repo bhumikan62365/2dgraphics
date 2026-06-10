@@ -129,3 +129,96 @@ else{
     deletArea(minrow,mincol,maxrow-minrow+1,maxcol-mincol+1);
     drawLine(newrow1,newcol1,newrow2,newcol2);
 }
+void modifyTriangle(int oldtrow,int oldtcol,int oldtheight,int newtrow,int newtcol,int newtheight){
+    deletArea(oldtrow,oldtcol-oldtheight,oldtheight,2*oldtheight+1);
+    drawTriangle(newtrow,newtcol,newtheight);
+}
+int main(){
+    int choice;
+    int row,col,height,width;
+    int row1,col1,row2,col2;
+    int trow,tcol,theight;
+    int xc,yc,r;
+    int drow,dcol,dheight,dwidth;
+    int oldrow,oldcol,oldheight,oldwidth;
+    int newrow,newcol,newheight,newwidth;
+    int oldxc,oldyc,oldr;  
+    int newxc,newyc,newr;
+    int oldrow1,oldcol1,oldrow2,oldcol2;
+    int newrow1,newcol1,newrow2,newcol2;
+    int oldtrow,oldtcol,oldtheight;
+    int newtrow,newtcol,newtheight;
+    initializeCanvas();
+    do{
+        printf("\n1.Draw Rectangle\n2.Draw Line\n3.Draw Triangle\n4.Draw Circle\n5.Delete Area\n6.Display canavas\n7.Modify Rectangle\n8.Modify Circle\n9.Modify Line\n10.modify triangle\nEnter your choice: ");
+        scanf("%d",&choice);
+        switch(choice){
+            case 1:
+                printf("Enter row, column, height and width of the rectangle: ");
+                scanf("%d%d%d%d",&row,&col,&height,&width);
+                drawRectangle(row,col,height,width);
+                break;
+            case 2:
+                printf("enter row column height and width of the line: ");
+                scanf("%d%d%d%d",&row1,&col1,&row2,&col2 );
+                drawLine(row1,col1,row2,col2);
+                break;
+            case 3:
+                printf("enter row column and height of the triangle: ");
+                scanf("%d%d%d",&trow,&tcol,&theight);
+                drawTriangle(trow,tcol,theight);
+                break;
+            case 4:
+                printf("enter row column and radius of the circle: ");
+                scanf("%d%d%d",&xc,&yc,&r);
+                drawCircle(xc,yc,r);
+                break;
+            case 5:
+                printf("enter row, column, height and width of the area to delete: ");
+                scanf("%d%d%d%d",&drow,&dcol,&dheight,&dwidth);
+                deletArea(drow,dcol,dheight,dwidth);
+                break;
+            case 6:
+                displayCanvas();
+                break;
+            case 7:                
+            printf("enter old row, column, height and width of the rectangle: ");
+                scanf("%d%d%d%d",&oldrow,&oldcol,&oldheight,&oldwidth);
+                printf("enter new row, column, height and width of the rectangle: ");
+                scanf("%d%d%d%d",&newrow,&newcol,&newheight,&newwidth);
+                modifyRectangle(oldrow,oldcol,oldheight,oldwidth,newrow,newcol,newheight,newwidth);
+                break;
+            case 8:
+                printf("enter old row, column and radius of the circle: ");
+                scanf("%d%d%d",&oldxc,&oldyc,&oldr);
+                printf("enter new row, column and radius of the circle: ");
+                scanf("%d%d%d",&newxc,&newyc,&newr);
+                modifyCircle(oldxc,oldyc,oldr,newxc,newyc,newr);
+                break;
+            case 9:
+                printf("enter old row1, column1, row2 and column2 of the line: ");
+                scanf("%d%d%d%d",&oldrow1,&oldcol1,&oldrow2,&oldcol2);
+                printf("enter new row1, column1, row2 and column2 of the line: ");
+                scanf("%d%d%d%d",&newrow1,&newcol1,&newrow2,&newcol2);
+                modifyLine(oldrow1,oldcol1,oldrow2,oldcol2,newrow1,newcol1,newrow2,newcol2);
+                break; 
+            case 10:
+                printf("enter old row, column and height of the triangle: ");
+                scanf("%d%d%d",&oldtrow,&oldtcol,&oldtheight);
+                printf("enter new row, column and height of the triangle: ");
+                scanf("%d%d%d",&newtrow,&newtcol,&newtheight);
+                modifyTriangle(oldtrow,oldtcol,oldtheight,newtrow,newtcol,newtheight);
+                break;  
+            case 11:
+                printf("Exiting...\n");
+                break;  
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    } while (choice!=11);
+    {
+      return 0;  
+    }
+    
+
+}   
