@@ -1,0 +1,24 @@
+Prompt 1:
+Create a menu-driven C program for a simple drawing application using a 30x30 character canvas.
+
+Response:
+A menu-driven C program was created with options to draw shapes, delete shapes, modify shapes, display the canvas, and exit the application.
+Prompt 2:
+Write a function to initialize a 30x30 canvas with '_' characters.
+
+Response:
+void initializeCanvas()
+{
+    int i,j;
+    for(i=0;i<30;i++)
+    {
+        for(j=0;j<30;j++)
+        {
+            canvas[i][j]='_';
+        }
+    }
+}
+Prompt 3:
+Write a function to draw a rectangle on the canvas using '*' characters.
+Response:
+A drawRectangle() function was provided that draws the boundary of a rectangle using the specified row, column, height, and width
