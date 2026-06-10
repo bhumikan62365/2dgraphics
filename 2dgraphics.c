@@ -65,3 +65,67 @@ void drawTriangle(int row,int col,int height){
         canvas[row+height-1][i]='*';
     }
 }
+void drawCircle(int xc,int yc,int r){
+    int x,y,d;
+    for(y=0;y<rows;y++){
+        for(x=0;x<columns;x++){
+            d=(x-xc)*(x-xc)+(y-yc)*(y-yc);
+            if(d<=r*r){
+                canvas[y][x]='*';
+            }
+        }
+    }   
+
+}
+void deletArea(int row,int col,int height,int width){
+    for(int i=row;i<row+height;i++){
+        for(int j=col;j<col+width;j++){
+            canvas[i][j]='_';
+        }
+    }
+}
+void deleteCircle(int xc,int yc,int r){
+    int x,y;
+    for(y=0;y<rows;y++){
+        for(x=0;x<columns;x++){
+            if((x-xc)*(x-xc)+(y-yc)*(y-yc)<=r*r){
+                canvas[y][x]='_';
+            }
+        }
+    }   
+
+}
+void modifyRectangle(int oldrow,int oldcol,int oldheight,int oldwidth,int newrow,int newcol,int newheight,int newwidth){
+    deletArea(oldrow,oldcol,oldheight,oldwidth);
+    drawRectangle(newrow,newcol,newheight,newwidth);
+}
+void modifyCircle(int oldxc,int oldyc,int oldr,int newxc,int newyc,int newr){
+    deleteCircle(oldxc,oldyc,oldr);
+    drawCircle(newxc,newyc,newr);
+}
+void modifyLine(int oldrow1,int oldcol1,int oldrow2,int oldcol2,int newrow1,int newcol1,int newrow2,int newcol2){
+    if(oldrow1!=oldrow2 && oldcol1!=oldcol2){
+        printf("Only horizontal and vertical lines can be modified.\n");
+        return;
+    }
+
+int minrow, maxrow, mincol, maxcol;
+if(oldrow1<oldrow2){
+    minrow=oldrow1;
+    maxrow=oldrow2;
+}
+else{
+    minrow=oldrow2;
+    maxrow=oldrow1;
+}
+if(oldcol1<oldcol2){
+    mincol=oldcol1;
+    maxcol=oldcol2;
+}
+else{
+    mincol=oldcol2;
+    maxcol=oldcol1;
+}
+    deletArea(minrow,mincol,maxrow-minrow+1,maxcol-mincol+1);
+    drawLine(newrow1,newcol1,newrow2,newcol2);
+}
